@@ -1,0 +1,85 @@
+:root {
+    --bg-color: #16241d;           /* Koyu yeşilimsi arka plan */
+    --text-color: #e6f4ea;         /* Açık yeşilimsi-beyaz yazı */
+    --link-color: #6ee7b7;         /* Canlı yeşil link */
+    --link-hover: #34d399;         /* Daha koyu yeşil hover */
+    --sidebar-bg: #1e2d24;         /* Sidebar için koyu yeşil */
+    --border-color: #264533;       /* Sınırlar için yeşil ton */
+    --main-font: 'JetBrains Mono', 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--main-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    background-image: linear-gradient(135deg, #16241d 60%, #1e2d24 100%);
+}
+
+a {
+    color: var(--link-color);
+    transition: color 0.2s, text-decoration 0.2s;
+}
+
+a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+.content-section h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-item a {
+    display: block;
+    padding: 0.25rem 0;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.sidebar-item a:hover {
+    color: var(--link-hover);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+    }
+    .main-nav ul {
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Tailwind ile çakışmaması için ek dark tema stilleri */
+.bg-sidebar-bg {
+    background-color: var(--sidebar-bg) !important;
+}
+.text-gray-800, .text-gray-900, .text-gray-600, .text-gray-700, .text-gray-500, .text-gray-200, .text-gray-300, .text-gray-100 {
+    color: var(--text-color) !important;
+}
+.bg-gray-100 {
+    background-color: #223427 !important; /* Sidebar kartları için hafif yeşil */
+}
+.border-gray-200 {
+    border-color: var(--border-color) !important;
+}
+
+/* Doğa teması için ekstra detaylar */
+.project-card {
+    background: rgba(38, 69, 51, 0.15);
+    box-shadow: 0 2px 8px 0 rgba(52, 211, 153, 0.05);
+}
+
+.site-footer {
+    background: linear-gradient(90deg, #1e2d24 60%, #16241d 100%);
+    border-top: 1px solid var(--border-color);
+}
