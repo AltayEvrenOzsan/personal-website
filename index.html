@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigasyon -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Blog</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Ana Sayfa</a></li>
+                <li><a href="#about" class="nav-link">Hakkımda</a></li>
+                <li><a href="#blog" class="nav-link">Yazılar</a></li>
+                <li><a href="#contact" class="nav-link">İletişim</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="sun">☀️</span>
+                <span class="moon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Bölümü -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Merhaba, Ben <span class="highlight">Adınız</span></h1>
+                <p class="hero-subtitle">Yazılım Geliştirici & İçerik Üreticisi</p>
+                <p class="hero-description">Teknoloji, yazılım ve yaratıcılık üzerine düşüncelerimi paylaşıyorum.</p>
+                <a href="#blog" class="btn-primary">Yazıları Keşfet</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkımda Bölümü -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Hakkımda</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="avatar">👨‍💻</div>
+                </div>
+                <div class="about-text">
+                    <p>Merhaba! Ben bir yazılım geliştiriciyim ve teknoloji tutkununum. Bu blogda yazılım geliştirme, web teknolojileri ve kişisel deneyimlerim hakkında yazılar paylaşıyorum.</p>
+                    <p>Yeni şeyler öğrenmeyi ve öğrendiklerimi başkalarıyla paylaşmayı seviyorum. Umarım yazılarım size ilham verir ve faydalı olur.</p>
+                    <div class="skills">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">HTML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Yazıları -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 class="section-title">Son Yazılar</h2>
+            <div class="blog-grid" id="blogGrid">
+                <!-- Blog kartları JavaScript ile yüklenecek -->
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Bölümü -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">İletişim</h2>
+            <div class="contact-content">
+                <p>Benimle iletişime geçmek isterseniz:</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📧 Email</a>
+                    <a href="#" class="social-link">💼 LinkedIn</a>
+                    <a href="#" class="social-link">🐙 GitHub</a>
+                    <a href="#" class="social-link">🐦 Twitter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Kişisel Blog. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
