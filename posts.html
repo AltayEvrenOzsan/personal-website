@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Takes</title>
+    <title>Posts</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
         </div>  
         <nav class="main-nav">
             <ul class="flex space-x-8 md:space-x-10">
-                <li><a href="/takes" class="text-gray-600 hover:text-blue-600 transition-colors">Personal Takes</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Posts</a></li>
                 <li><a href="/blog" class="text-gray-600 hover:text-blue-600 transition-colors">Blog</a></li>
                 <li><a href="/projects" class="text-gray-600 hover:text-blue-600 transition-colors">Projects</a></li>
                 <li><a href="/about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a></li>
@@ -32,24 +32,29 @@
                 <p class="text-lg text-gray-700 leading-relaxed border-b border-gray-200 pb-4">
                     For ranting, muse, and spiraling.
             </article>
-            <!-- Arama çubuğu ve takes listesi -->
+            <!-- Arama çubuğu ve posts listesi -->
             <div class="flex justify-start my-6">
-                <input 
-                    type="text" 
-                    id="takes-search"
-                    placeholder="Search..." 
-                    class="w-full max-w-md px-4 py-2 rounded-lg shadow-sm font-mono"
-                    style="
-                        background-color: var(--sidebar-bg);
-                        color: var(--text-color);
-                        border: 1.5px solid var(--border-color);
-                    "
-                >
+                <div class="relative w-full max-w-md">
+                    <input 
+                        type="text" 
+                        id="posts-search"
+                        placeholder="Search..." 
+                        class="pr-10 pl-4 py-2 rounded-lg shadow-sm font-mono w-full bg-[var(--sidebar-bg)] text-[var(--text-color)] border border-[var(--border-color)] focus:outline-none"
+                    >
+                    <button 
+                        id="clear-search"
+                        type="button"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 rounded bg-[var(--bg-color)] text-[var(--text-color)] hover:bg-[var(--sidebar-bg)] border border-[var(--border-color)] font-mono text-xs transition hidden"
+                        aria-label="Clear search"
+                    >
+                        ✕
+                    </button>
+                </div>
             </div>
             <section class="mt-8">
-                <ul id="takes-list" class="list-disc pl-6 space-y-2">
+                <ul id="posts-list" class="list-disc pl-6 space-y-2">
                     <li data-title="dolor-ipsum-history">
-                        <a href="/personal-takes/dolor-ipsum-history.html" class="text-blue-600 hover:underline">
+                        <a href="/posts/dolor-ipsum-history.html" class="text-blue-600 hover:underline">
                             History of Dolor Ipsum</a>
                         <span class="text-gray-400 text-sm ml-2">17.10.2025</span>
                     </li>
@@ -58,14 +63,23 @@
                 <div id="no-results" class="text-red-400 mt-4 hidden">No results found</div>
             </section>
             <script>
-                const searchInput = document.getElementById('takes-search');
-                const takesList = document.getElementById('takes-list');
+                const searchInput = document.getElementById('posts-search');
+                const postsList = document.getElementById('posts-list');
                 const noResults = document.getElementById('no-results');
+                const clearBtn = document.getElementById('clear-search');
+
+                function updateClearBtn() {
+                    if (searchInput.value.length > 0) {
+                        clearBtn.classList.remove('hidden');
+                    } else {
+                        clearBtn.classList.add('hidden');
+                    }
+                }
 
                 searchInput.addEventListener('input', function() {
                     const query = this.value.toLowerCase();
                     let visibleCount = 0;
-                    Array.from(takesList.querySelectorAll('li')).forEach(li => {
+                    Array.from(postsList.querySelectorAll('li')).forEach(li => {
                         const title = li.getAttribute('data-title');
                         const link = li.querySelector('a');
                         if (title.toLowerCase().includes(query)) {
@@ -91,7 +105,17 @@
                     } else {
                         noResults.classList.add('hidden');
                     }
+                    updateClearBtn();
                 });
+
+                clearBtn.addEventListener('click', function() {
+                    searchInput.value = '';
+                    searchInput.dispatchEvent(new Event('input'));
+                    searchInput.focus();
+                });
+
+                // İlk yüklemede de kontrol et
+                updateClearBtn();
             </script>
         </main>
     </div>
