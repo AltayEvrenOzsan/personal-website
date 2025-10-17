@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="antialiased">
     
@@ -32,26 +32,67 @@
                 <p class="text-lg text-gray-700 leading-relaxed border-b border-gray-200 pb-4">
                     For ranting, muse, and spiraling.
             </article>
-            <!-- Arama çubuğu eklendi -->
+            <!-- Arama çubuğu ve takes listesi -->
             <div class="flex justify-start my-6">
                 <input 
                     type="text" 
-                    placeholder="Takes içinde ara..." 
-                    class="w-full max-w-md px-4 py-2 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono bg-gray-50 text-gray-800 placeholder-gray-400"
+                    id="takes-search"
+                    placeholder="Search..." 
+                    class="w-full max-w-md px-4 py-2 rounded-lg shadow-sm font-mono"
+                    style="
+                        background-color: var(--sidebar-bg);
+                        color: var(--text-color);
+                        border: 1.5px solid var(--border-color);
+                    "
                 >
             </div>
             <section class="mt-8">
-                <h2 class="text-2xl font-bold mb-4">Takes</h2>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li>
-                        <a href="./takes/dolor-ipsum-history.html" class="text-blue-600 hover:underline">
-                            History of Dolor Ipsum
-                        </a>
+                <ul id="takes-list" class="list-disc pl-6 space-y-2">
+                    <li data-title="dolor-ipsum-history">
+                        <a href="/personal-takes/dolor-ipsum-history.html" class="text-blue-600 hover:underline">
+                            History of Dolor Ipsum</a>
                         <span class="text-gray-400 text-sm ml-2">17.10.2025</span>
                     </li>
                     <!-- Yeni dosya ekledikçe buraya yeni <li> ekleyebilirsin -->
                 </ul>
+                <div id="no-results" class="text-red-400 mt-4 hidden">No results found</div>
             </section>
+            <script>
+                const searchInput = document.getElementById('takes-search');
+                const takesList = document.getElementById('takes-list');
+                const noResults = document.getElementById('no-results');
+
+                searchInput.addEventListener('input', function() {
+                    const query = this.value.toLowerCase();
+                    let visibleCount = 0;
+                    Array.from(takesList.querySelectorAll('li')).forEach(li => {
+                        const title = li.getAttribute('data-title');
+                        const link = li.querySelector('a');
+                        if (title.toLowerCase().includes(query)) {
+                            li.style.display = '';
+                            visibleCount++;
+
+                            // Highlight query in link text
+                            if (query.length > 0) {
+                                // Escape regex special chars in query
+                                const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                const regex = new RegExp(`(${safeQuery})`, 'gi');
+                                link.innerHTML = link.textContent.replace(regex, '<span class="bg-yellow-300 text-black rounded px-1">$1</span>');
+                            } else {
+                                link.innerHTML = link.textContent; // Remove highlight if query is empty
+                            }
+                        } else {
+                            li.style.display = 'none';
+                            link.innerHTML = link.textContent; // Remove highlight if hidden
+                        }
+                    });
+                    if (visibleCount === 0) {
+                        noResults.classList.remove('hidden');
+                    } else {
+                        noResults.classList.add('hidden');
+                    }
+                });
+            </script>
         </main>
     </div>
 
