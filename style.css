@@ -1,11 +1,12 @@
 :root {
-    --bg-color: #16241d;           /* Koyu yeşilimsi arka plan */
+    --bg-color: #181818;           /* Yeni arka plan rengi */
     --text-color: #e6f4ea;         /* Açık yeşilimsi-beyaz yazı */
-    --link-color: #6ee7b7;         /* Canlı yeşil link */
-    --link-hover: #34d399;         /* Daha koyu yeşil hover */
-    --sidebar-bg: #1e2d24;         /* Sidebar için koyu yeşil */
-    --border-color: #264533;       /* Sınırlar için yeşil ton */
+    --link-color: #a3b18a;      /* Sage: soft yeşil-gri */
+    --link-hover: #b5c99a;      /* Sage'in açık tonu */
+    --sidebar-bg: #232323;         /* Sidebar için koyu gri */
+    --border-color: #222;          /* Sınırlar için koyu gri */
     --main-font: 'JetBrains Mono', 'Inter', sans-serif;
+    --header-bg: #181818;          /* Header için yeni arka plan */
 }
 
 body {
@@ -13,16 +14,16 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
-    background-image: linear-gradient(135deg, #16241d 60%, #1e2d24 100%);
+    background-image: linear-gradient(135deg, #181818 60%, #232323 100%);
 }
 
 a {
-    color: var(--link-color);
+    color: var(--link-color) !important;
     transition: color 0.2s, text-decoration 0.2s;
 }
 
 a:hover {
-    color: var(--link-hover);
+    color: var(--link-hover) !important;
     text-decoration: underline;
 }
 
@@ -80,6 +81,34 @@ a:hover {
 }
 
 .site-footer {
-    background: linear-gradient(90deg, #1e2d24 60%, #16241d 100%);
+    background-color: #161616 !important; /* Daha koyu düz arka plan */
     border-top: 1px solid var(--border-color);
+    color: var(--link-color) !important; /* Footer metni sage rengi */
+}
+
+.site-footer a {
+    color: var(--link-color) !important;
+}
+
+.site-footer a:hover {
+    color: var(--link-hover) !important;
+}
+
+.site-header {
+    position: sticky; /* Sayfa ile hareket etmesi için */
+    top: 0; /* Üstte sabitlenmesi için */
+    z-index: 1000; /* Diğer içeriklerin altında kalmaması için */
+    backdrop-filter: blur(16px); /* Bulanıklık efekti (daha fazla blur) */
+    -webkit-backdrop-filter: blur(16px); /* Safari desteği */
+    background-color: rgba(24, 24, 24, 0.55); /* #181818, daha belirgin transparanlık */
+    transition: background-color 0.3s, backdrop-filter 0.3s; /* Geçiş efekti */
+    border-bottom: 1px solid var(--border-color); /* Alt çizgi */
+}
+
+.link-sage {
+    color: var(--link-color);
+    transition: color 0.2s;
+}
+.link-sage:hover {
+    color: var(--link-hover);
 }
