@@ -9,8 +9,6 @@
     --footer-bg: #161616;          /* Footer arka planı (değişken) */
 
     /* New: background gradient stops and icon colors */
-    --bg-grad-1: #181818;
-    --bg-grad-2: #232323;
     --icon-fill: var(--text-color);
     --icon-fill-hover: var(--link-hover);
 }
@@ -21,12 +19,9 @@
     --bg-color: #f8f8f8;
     --text-color: #232323;
     --sidebar-bg: #e6e6e6;
-    --header-bg: #f8f8f8;
+    --header-bg: #f8f8f8; 
     --footer-bg: #f8f8f8;
     --border-color: #ddd;
-
-    --bg-grad-1: #f8f8f8;
-    --bg-grad-2: #e6e6e6;
     --icon-fill: #232323;
     --icon-fill-hover: #111111;
 }
@@ -34,8 +29,6 @@
 /* Optional explicit dark block for clarity */
 [data-theme="dark"] {
     --link-color: #a3b18a;      /* Sage: soft yeşil-gri */
-    --bg-grad-1: #181818;
-    --bg-grad-2: #232323;
     --icon-fill: var(--text-color);
     --icon-fill-hover: var(--link-hover);
 }
@@ -44,13 +37,10 @@ body {
     font-family: var(--main-font);
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 1.2s, color 0.6s, background-image 1.2s;
-    background-image: linear-gradient(135deg, var(--bg-grad-1) 60%, var(--bg-grad-2) 100%);
 }
 
 a {
     color: var(--link-color) !important;
-    transition: color 0.2s, text-decoration 0.2s;
 }
 a:hover { color: var(--link-hover) !important; text-decoration: underline; }
 
@@ -95,10 +85,13 @@ a:hover { color: var(--link-hover) !important; text-decoration: underline; }
     position: sticky; top: 0; z-index: 1000;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    background-color: rgba(24, 24, 24, 0.55);
-    transition: background-color 0.3s, backdrop-filter 0.3s;
+    background-color: var(--header-bg);
+    opacity: 0.95;
     border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0 0 12px 12px;
 }
+
 
 .link-sage { color: var(--link-color); transition: color 0.2s; }
 .link-sage:hover { color: var(--link-hover); }
