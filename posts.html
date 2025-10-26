@@ -7,28 +7,68 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Set theme early to avoid flash -->
+    <script>
+      (function () {
+        try {
+          const key = 'theme-preference';
+          const stored = localStorage.getItem(key);
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (_) {}
+      })();
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="antialiased">
     
-    <header class="site-header flex flex-wrap justify-between items-center py-6 px-4 md:px-8 max-w-6xl mx-auto">
+    <!-- Üst Bölüm (Header) ve Navigasyon -->
+    <header class="site-header flex flex-wrap justify-between items-center py-6 px-4 md:px-8 max-w-6xl mx-auto bg-header-bg">
         <div class="logo text-2xl font-bold">
             <a href="/" class="text-gray-800 hover:text-gray-900 no-underline">altayevrenozsan.dev</a>
-        </div>  
+        </div>
         <nav class="main-nav">
             <ul class="flex space-x-8 md:space-x-10">
-                <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Posts</a></li>
+                <li><a href="/posts.html" class="text-gray-600 hover:text-blue-600 transition-colors">Posts</a></li>
                 <li><a href="/blog" class="text-gray-600 hover:text-blue-600 transition-colors">Blog</a></li>
-                <li><a href="/projects" class="text-gray-600 hover:text-blue-600 transition-colors">Projects</a></li>
+                <li>
+                    <a href="/projects" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        Projects
+                    </a>
+                </li>
                 <li><a href="/about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a></li>
             </ul>
         </nav>
+
+        <!-- New animated sun–moon theme toggle -->
+        <button type="button" class="theme-toggle ml-4" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+          <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+            <mask class="moon" id="moon-mask">
+              <rect x="0" y="0" width="100%" height="100%" fill="white" />
+              <circle cx="24" cy="10" r="6" fill="black" />
+            </mask>
+            <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+            <g class="sun-beams" stroke="currentColor">
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </g>
+          </svg>
+        </button>
     </header>
 
     <div class="max-w-6xl mx-auto px-4 md:px-8 py-8">
         <main class="main-content-area space-y-12">
             <article class="content-section">
-                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">New Personal Take</h1>
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">Posts</h1>
                 <p class="text-lg text-gray-700 leading-relaxed border-b border-gray-200 pb-4">
                     For ranting, muse, and spiraling.
             </article>
@@ -120,21 +160,14 @@
         </main>
     </div>
 
-    <footer class="site-footer max-w-6xl mx-auto px-4 md:px-8 py-6 border-t border-gray-200 mt-12 text-center text-sm text-gray-500">
+    <footer class="site-footer max-w-6xl mx-auto px-4 md:px-8 py-6 mt-12 text-center text-sm bg-gray-900 text-gray-100">
         <nav class="footer-nav flex justify-center space-x-4 mb-3">
-            <a href="#" class="hover:text-blue-600 transition-colors">Email signup</a>
-            <span class="text-gray-300">/</span>
-            <a href="#" class="hover:text-blue-600 transition-colors">RSS feed</a>
-            <span class="text-gray-300">/</span>
-            <a href="#" class="hover:text-blue-600 transition-colors">Buy me a coffee</a>
+            <a href="#">Send me an email</a>
+            <span>/</span>
+            <a href="#">Buy me a coffee</a>
         </nav>
-        <div class="tech-stack flex justify-center space-x-3 mb-2">
-            <span class="text-xs font-mono bg-gray-100 px-2 py-0.5 rounded">Gatsby</span>
-            <span class="text-xs font-mono bg-gray-100 px-2 py-0.5 rounded">GitHub</span>
-            <span class="text-xs font-mono bg-gray-100 px-2 py-0.5 rounded">Netlify</span>
-        </div>
-        <p class="mt-4">Remember to be kind to yourselves <3 </p>
+        <p class="mt-4">Remember to be kind to yourselves &lt;3 </p>
     </footer>
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

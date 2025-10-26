@@ -1,78 +1,81 @@
 :root {
+    --link-hover: #b5c99a;      /* Sage'in açık tonu */
     --bg-color: #181818;           /* Yeni arka plan rengi */
     --text-color: #e6f4ea;         /* Açık yeşilimsi-beyaz yazı */
-    --link-color: #a3b18a;      /* Sage: soft yeşil-gri */
-    --link-hover: #b5c99a;      /* Sage'in açık tonu */
     --sidebar-bg: #232323;         /* Sidebar için koyu gri */
     --border-color: #222;          /* Sınırlar için koyu gri */
     --main-font: 'JetBrains Mono', 'Inter', sans-serif;
     --header-bg: #181818;          /* Header için yeni arka plan */
+    --footer-bg: #161616;          /* Footer arka planı (değişken) */
+
+    /* New: background gradient stops and icon colors */
+    --bg-grad-1: #181818;
+    --bg-grad-2: #232323;
+    --icon-fill: var(--text-color);
+    --icon-fill-hover: var(--link-hover);
+}
+
+/* Light theme overrides via data-attribute */
+[data-theme="light"] {
+    --link-color: #758d4c; 
+    --bg-color: #f8f8f8;
+    --text-color: #232323;
+    --sidebar-bg: #e6e6e6;
+    --header-bg: #f8f8f8;
+    --footer-bg: #f8f8f8;
+    --border-color: #ddd;
+
+    --bg-grad-1: #f8f8f8;
+    --bg-grad-2: #e6e6e6;
+    --icon-fill: #232323;
+    --icon-fill-hover: #111111;
+}
+
+/* Optional explicit dark block for clarity */
+[data-theme="dark"] {
+    --link-color: #a3b18a;      /* Sage: soft yeşil-gri */
+    --bg-grad-1: #181818;
+    --bg-grad-2: #232323;
+    --icon-fill: var(--text-color);
+    --icon-fill-hover: var(--link-hover);
 }
 
 body {
     font-family: var(--main-font);
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-    background-image: linear-gradient(135deg, #181818 60%, #232323 100%);
+    transition: background-color 1.2s, color 0.6s, background-image 1.2s;
+    background-image: linear-gradient(135deg, var(--bg-grad-1) 60%, var(--bg-grad-2) 100%);
 }
 
 a {
     color: var(--link-color) !important;
     transition: color 0.2s, text-decoration 0.2s;
 }
-
-a:hover {
-    color: var(--link-hover) !important;
-    text-decoration: underline;
-}
+a:hover { color: var(--link-hover) !important; text-decoration: underline; }
 
 .content-section h2 {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.25rem; font-weight: 700;
     border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding-bottom: 0.5rem; margin-bottom: 1rem;
+    display: flex; justify-content: space-between; align-items: center;
 }
 
-.sidebar-item a {
-    display: block;
-    padding: 0.25rem 0;
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-.sidebar-item a:hover {
-    color: var(--link-hover);
-    text-decoration: none;
-}
+.sidebar-item a { display: block; padding: 0.25rem 0; color: var(--text-color); text-decoration: none; }
+.sidebar-item a:hover { color: var(--link-hover); text-decoration: none; }
 
 @media (max-width: 768px) {
-    .site-header {
-        flex-direction: column;
-    }
-    .main-nav ul {
-        justify-content: center;
-        margin-top: 0.5rem;
-    }
+    .site-header { flex-direction: column; }
+    .main-nav ul { justify-content: center; margin-top: 0.5rem; }
 }
 
 /* Tailwind ile çakışmaması için ek dark tema stilleri */
-.bg-sidebar-bg {
-    background-color: var(--sidebar-bg) !important;
-}
+.bg-sidebar-bg { background-color: var(--sidebar-bg) !important; }
 .text-gray-800, .text-gray-900, .text-gray-600, .text-gray-700, .text-gray-500, .text-gray-200, .text-gray-300, .text-gray-100 {
     color: var(--text-color) !important;
 }
-.bg-gray-100 {
-    background-color: #223427 !important; /* Sidebar kartları için hafif yeşil */
-}
-.border-gray-200 {
-    border-color: var(--border-color) !important;
-}
+.bg-gray-100 { background-color: #223427 !important; }
+.border-gray-200 { border-color: var(--border-color) !important; }
 
 /* Doğa teması için ekstra detaylar */
 .project-card {
@@ -81,34 +84,87 @@ a:hover {
 }
 
 .site-footer {
-    background-color: #161616 !important; /* Daha koyu düz arka plan */
+    background-color: var(--footer-bg) !important;
     border-top: 1px solid var(--border-color);
-    color: var(--link-color) !important; /* Footer metni sage rengi */
+    color: var(--text-color) !important;
 }
-
-.site-footer a {
-    color: var(--link-color) !important;
-}
-
-.site-footer a:hover {
-    color: var(--link-hover) !important;
-}
+.site-footer a { color: var(--link-color) !important; }
+.site-footer a:hover { color: var(--link-hover) !important; }
 
 .site-header {
-    position: sticky; /* Sayfa ile hareket etmesi için */
-    top: 0; /* Üstte sabitlenmesi için */
-    z-index: 1000; /* Diğer içeriklerin altında kalmaması için */
-    backdrop-filter: blur(16px); /* Bulanıklık efekti (daha fazla blur) */
-    -webkit-backdrop-filter: blur(16px); /* Safari desteği */
-    background-color: rgba(24, 24, 24, 0.55); /* #181818, daha belirgin transparanlık */
-    transition: background-color 0.3s, backdrop-filter 0.3s; /* Geçiş efekti */
-    border-bottom: 1px solid var(--border-color); /* Alt çizgi */
+    position: sticky; top: 0; z-index: 1000;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background-color: rgba(24, 24, 24, 0.55);
+    transition: background-color 0.3s, backdrop-filter 0.3s;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.link-sage {
-    color: var(--link-color);
-    transition: color 0.2s;
+.link-sage { color: var(--link-color); transition: color 0.2s; }
+.link-sage:hover { color: var(--link-hover); }
+
+/* Theme toggle — soft, glassy pill */
+.theme-toggle {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.375rem;
+    padding: 0.45rem 0.75rem;
+    min-width: 2.25rem; min-height: 2.25rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-color: rgba(255, 255, 255, 0.06);
+    color: var(--text-color);
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.05s ease;
 }
-.link-sage:hover {
-    color: var(--link-hover);
+.theme-toggle:hover { background-color: rgba(255, 255, 255, 0.10); border-color: rgba(255, 255, 255, 0.20); }
+.theme-toggle:active { transform: translateY(1px); }
+.theme-toggle:focus-visible { outline: none; border-color: var(--link-hover); box-shadow: 0 0 0 3px rgba(181, 201, 154, 0.35); }
+
+/* Animated sun–moon icon */
+.sun-and-moon > :is(.moon, .sun, .sun-beams) { transform-origin: center; }
+.sun-and-moon > :is(.moon, .sun) { fill: var(--icon-fill); transition: fill 0.2s ease; }
+.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) { fill: var(--icon-fill-hover); }
+.sun-and-moon > .sun-beams { stroke: var(--icon-fill); stroke-width: 2px; transition: stroke 0.2s ease; }
+.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams { stroke: var(--icon-fill-hover); }
+
+[data-theme="dark"] .sun-and-moon > .sun { transform: scale(1.75); }
+[data-theme="dark"] .sun-and-moon > .sun-beams { opacity: 0; }
+[data-theme="dark"] .sun-and-moon > .moon > circle { transform: translateX(-7px); }
+@supports (cx: 1) {
+  [data-theme="dark"] .sun-and-moon > .moon > circle { cx: 17; transform: translateX(0); }
+}
+
+/* Motion with fallbacks if open-props is not present */
+@media (prefers-reduced-motion: no-preference) {
+  .sun-and-moon > .sun {
+    transition: transform .5s var(--ease-elastic-3, cubic-bezier(.34,1.56,.64,1));
+  }
+  .sun-and-moon > .sun-beams {
+    transition: transform .5s var(--ease-elastic-4, cubic-bezier(.22,1,.36,1)), opacity .5s var(--ease-3, cubic-bezier(.25,.8,.5,1));
+  }
+  .sun-and-moon .moon > circle {
+    transition: transform .25s var(--ease-out-5, cubic-bezier(0,0,.2,1));
+  }
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle { transition: cx .25s var(--ease-out-5, cubic-bezier(0,0,.2,1)); }
+  }
+  [data-theme="dark"] .sun-and-moon > .sun {
+    transition-timing-function: var(--ease-3, cubic-bezier(.25,.8,.5,1));
+    transition-duration: .25s;
+    transform: scale(1.75);
+  }
+  [data-theme="dark"] .sun-and-moon > .sun-beams {
+    transition-duration: .15s;
+    transform: rotateZ(-25deg);
+  }
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    transition-duration: .5s;
+    transition-delay: .25s;
+  }
+}
+
+button,
+.theme-toggle,
+.theme-toggle svg {
+  transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease;
 }
