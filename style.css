@@ -15,15 +15,16 @@
 
 /* Light theme overrides via data-attribute */
 [data-theme="light"] {
-    --link-color: #758d4c; 
-    --bg-color: #f8f8f8;
-    --text-color: #232323;
-    --sidebar-bg: #e6e6e6;
-    --header-bg: #f8f8f8; 
-    --footer-bg: #f8f8f8;
-    --border-color: #ddd;
-    --icon-fill: #232323;
-    --icon-fill-hover: #111111;
+    --link-color: #8b6f47;
+    --bg-color: #faf8f3;
+    --text-color: #2c2c2c;
+    --sidebar-bg: #f5f1e8;
+    --header-bg: #faf8f3;
+    --footer-bg: #faf8f3;
+    --border-color: #e8e3d8;
+    --icon-fill: #2c2c2c;
+    --icon-fill-hover: #5d4e37;
+    --link-hover: #a0825d;
 }
 
 /* Optional explicit dark block for clarity */
@@ -73,6 +74,11 @@ a:hover { color: var(--link-hover) !important; text-decoration: underline; }
     box-shadow: 0 2px 8px 0 rgba(52, 211, 153, 0.05);
 }
 
+[data-theme="light"] .project-card {
+    background-color: var(--sidebar-bg) !important;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.05);
+}
+
 .site-footer {
     background-color: var(--footer-bg) !important;
     border-top: 1px solid var(--border-color);
@@ -98,26 +104,43 @@ a:hover { color: var(--link-hover) !important; text-decoration: underline; }
 
 /* Theme toggle — soft, glassy pill */
 .theme-toggle {
-    display: inline-flex; align-items: center; justify-content: center; gap: 0.375rem;
-    padding: 0.45rem 0.75rem;
-    min-width: 2.25rem; min-height: 2.25rem;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background-color: rgba(255, 255, 255, 0.06);
-    color: var(--text-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    min-width: auto;
+    min-height: auto;
+    border-radius: 0;
+    border: none;
+    background: none;
+    color: currentColor;
     cursor: pointer;
-    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.05s ease;
+    gap: 0.5rem;
 }
-.theme-toggle:hover { background-color: rgba(255, 255, 255, 0.10); border-color: rgba(255, 255, 255, 0.20); }
-.theme-toggle:active { transform: translateY(1px); }
-.theme-toggle:focus-visible { outline: none; border-color: var(--link-hover); box-shadow: 0 0 0 3px rgba(181, 201, 154, 0.35); }
+
+.theme-toggle:hover {
+    opacity: 0.7;
+}
+
+.theme-toggle:active {
+    transform: none;
+}
+
+.theme-toggle:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.theme-toggle:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
 
 /* Animated sun–moon icon */
 .sun-and-moon > :is(.moon, .sun, .sun-beams) { transform-origin: center; }
-.sun-and-moon > :is(.moon, .sun) { fill: var(--icon-fill); transition: fill 0.2s ease; }
+.sun-and-moon > :is(.moon, .sun) { fill: var(--icon-fill); }
 .theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) { fill: var(--icon-fill-hover); }
-.sun-and-moon > .sun-beams { stroke: var(--icon-fill); stroke-width: 2px; transition: stroke 0.2s ease; }
+.sun-and-moon > .sun-beams { stroke: var(--icon-fill); stroke-width: 2px; }
 .theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams { stroke: var(--icon-fill-hover); }
 
 [data-theme="dark"] .sun-and-moon > .sun { transform: scale(1.75); }
